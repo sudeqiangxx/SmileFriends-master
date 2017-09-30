@@ -1,0 +1,52 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- 字体大小 -->
+    <dimen name="textsize_micro">12sp</dimen>
+    <dimen name="textsize_xsmall">14sp</dimen>
+    <dimen name="textsize_small">16sp</dimen>
+    <dimen name="textsize_middle">18sp</dimen>
+    <dimen name="textsize_large">22sp</dimen>
+    <dimen name="textsize_xlarge">25sp</dimen>
+    <!-- 定制对话框 -->
+    <dimen name="dialog_height">40dp</dimen>
+    <dimen name="dialog_content_min_height">60dp</dimen>
+
+    <!--androidsuperPickerView-->
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pickerview_topbar_height">44dp</dimen>
+    <!-- 顶部按钮paddingLeft -->
+    <dimen name="pickerview_topbar_paddingleft">10dp</dimen>
+    <!-- 顶部按钮paddingRight -->
+    <dimen name="pickerview_topbar_paddingright">30dp</dimen>
+    <!-- 顶部按钮文字大小 -->
+    <dimen name="pickerview_topbar_btn_textsize">20sp</dimen>
+    <dimen name="pickerview_topbar_title_textsize">21sp</dimen>
+    <!-- 选项文字大小 需要配合 bools.xml 的 pickerview_customTextSize 为 true 才有效果-->
+    <dimen name="pickerview_textsize">20sp</dimen>
+
+
+    <dimen name="view_distance_ss">2dp</dimen>
+    <dimen name="view_distance_sss">3dp</dimen>
+    <dimen name="view_distance_s">5dp</dimen>
+    <dimen name="view_distance_six">8dp</dimen>
+    <dimen name="view_distance_nine">9dp</dimen>
+    <dimen name="view_distance_m">10dp</dimen>
+    <dimen name="view_distance_l">15dp</dimen>
+    <dimen name="view_distance_xl">20dp</dimen>
+    <dimen name="view_distance_xll">25dp</dimen>
+    <dimen name="view_distance_xxll">27dp</dimen>
+    <dimen name="view_distance_xlll">28dp</dimen>
+    <dimen name="view_distance_xxl">30dp</dimen>
+    <dimen name="view_distance_xxxl">35dp</dimen>
+    <dimen name="view_distance_xxxls">45dp</dimen>
+    <dimen name="view_distance_xxxlm">55dp</dimen>
+    <dimen name="view_distance_xxxll">60dp</dimen>
+    <dimen name="view_distance_xxxxll">70dp</dimen>
+    <dimen name="view_distance_xxxxxll">100dp</dimen>
+    <dimen name="view_distance_xxxllll">140dp</dimen>
+    <dimen name="view_distance_xxxlll">170dp</dimen>
+    <dimen name="view_distance_xxxxlll">200dp</dimen>
+</resources>

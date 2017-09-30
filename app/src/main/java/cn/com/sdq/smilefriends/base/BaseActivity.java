@@ -1,12 +1,14 @@
 package cn.com.sdq.smilefriends.base;
 
+import android.app.ActionBar;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,7 +26,7 @@ import cn.com.sdq.smilefriends.util.StringUtils;
 /**
  *  Activity基类
  */
-public abstract class BaseActivity extends AppCompatActivity implements
+public abstract class BaseActivity extends FragmentActivity implements
         View.OnClickListener{
     private static final int PERMISSION_QUEST_CODE = 0x112;
     private boolean isVisible;
@@ -45,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
-        mActionBar = getSupportActionBar();
+        mActionBar = getActionBar();
         mInflater = getLayoutInflater();
         if (hasActionBar()) {
             initActionBar(mActionBar);
@@ -61,7 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     protected boolean hasActionBar() {
-        return getSupportActionBar() != null;
+        return getActionBar() != null;
     }
 
     protected int getLayoutId() {

@@ -35,7 +35,7 @@ public class JakeGifAdapter extends RecyclerView.Adapter<JakeGifAdapter.GifHolde
     }
 
     @Override
-    public void onBindViewHolder(GifHolder holder, int position) {
+    public void onBindViewHolder(GifHolder holder, final int position) {
             if (mList!=null&&mList.size()>0&& !StringUtil.isNullOrEmpty(mList.get(position).getContent())){
                 holder.tvContent.setText(mList.get(position).getContent());
                 //显示gif
@@ -50,6 +50,15 @@ public class JakeGifAdapter extends RecyclerView.Adapter<JakeGifAdapter.GifHolde
                         .load(mList.get(position).getUrl())
                         .placeholder(R.drawable.qraved_bg_default)
                         .into(holder.gifImageView);
+                holder.gifImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (itemClickListener!=null){
+                            itemClickListener.onItemClicklistener(position);
+                        }
+                    }
+                });
+
             }
 
     }
@@ -75,4 +84,13 @@ public class JakeGifAdapter extends RecyclerView.Adapter<JakeGifAdapter.GifHolde
 //            tvShowNumber= (TextView) showGroup.findViewById(R.id.tv_progress);
         }
     }
+
+    private onItemClickListener itemClickListener;
+    public interface  onItemClickListener{
+        void onItemClicklistener(int position);
+    }
+    public void setOnClickItemListener(onItemClickListener listener){
+        itemClickListener=listener;
+    }
+
 }

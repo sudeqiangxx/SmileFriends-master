@@ -14,4 +14,8 @@ public class AppConfig {
     //最新趣图
     public static final String NEW_IMG_URL="http://japi.juhe.cn/joke/img/text.from";
     public static final String PATH_CACHE="http-cache";
+
+    public static final String APP_ID="1106368797";
+
+
 }

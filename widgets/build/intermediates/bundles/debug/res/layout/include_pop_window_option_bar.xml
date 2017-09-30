@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/view_distance_xl"
+                android:padding="@dimen/view_distance_s">
+
+    <ImageView
+        android:id="@+id/btnCancel"
+        android:layout_width="@dimen/view_distance_xxl"
+        android:layout_height="@dimen/view_distance_xxl"
+        android:layout_marginLeft="@dimen/view_distance_xxxxll"
+        android:src="@drawable/cancle_iv"
+    />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/btnSubmit"
+        android:layout_toRightOf="@+id/btnCancel"
+        android:gravity="center"
+        android:textColor="@color/pickerview_topbar_title"
+        android:textSize="@dimen/textsize_middle"/>
+
+    <ImageView
+        android:id="@id/btnSubmit"
+        android:layout_width="@dimen/view_distance_xxl"
+        android:layout_height="@dimen/view_distance_xxl"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/view_distance_xxxxll"
+        android:src="@drawable/sure_iv"
+    />
+</RelativeLayout>

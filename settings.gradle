@@ -1,1 +1,1 @@
-include ':app', ':banner'
+include ':app', ':banner', ':okgo', ':widgets', ':arcore_client'

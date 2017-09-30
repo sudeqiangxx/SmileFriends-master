@@ -27,4 +27,13 @@ public interface APIService {
      */
     @GET("data/福利/{num}/{page}")
     Observable<JakeHttppResponse<List<JakeBean>>> getJakeList(@Path("num") int num, @Path("page") int page);
+
+    String BASE_URL="http://v.juhe.cn";
+    String GET_NEWS="/toutiao/index";
+    String APP_KEY="8fcf21bc49566f841ddbaf59f8daf5f0";
+
+    String FACEADD_TEST="https://api-cn.faceplusplus.com/facepp/v3/compare";
+    String FACE_ONE_TEST="https://api-cn.faceplusplus.com/facepp/v3/detect";
+    String FACE_APP_KEY="K4GS-4GnW99Bjm1xOb2dM72FhEietrOn";
+    String FACE_APP_SELECT="mTXuylR0CvyEAtNHcLcyELPQLPqSMghl";
 }

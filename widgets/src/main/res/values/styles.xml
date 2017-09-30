@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Animation.Popup" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- 对话框style -->
+    <style name="custom_dialog_style" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 对话框按钮style -->
+    <style name="pwy_dialog_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:maxWidth">140dp</item>
+        <item name="android:textColor">#42A5F5</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_dialog_button</item>
+    </style>
+    <style name="PopWindowstyle">
+        <item name="android:windowEnterAnimation">@anim/showanim</item>
+        <item name="android:windowExitAnimation">@anim/dismissanim</item>
+    </style>
+    <style name="custom_ratingbar_style" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/star_style</item>
+        <item name="android:minHeight">15dip</item>
+        <item name="android:maxHeight">15dip</item>
+        <item name="android:stepSize">0.1</item>
+        <item name="android:isIndicator">true</item>
+    </style>
+
+</resources>

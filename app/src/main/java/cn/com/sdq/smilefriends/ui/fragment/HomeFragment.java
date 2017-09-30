@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 import cn.com.sdq.smilefriends.R;
 import cn.com.sdq.smilefriends.base.BaseFragment;
 import cn.com.sdq.smilefriends.bean.JakeBean;
+import cn.com.sdq.smilefriends.commn.AppConstans;
 import cn.com.sdq.smilefriends.commn.GlideImageLoader;
 import cn.com.sdq.smilefriends.contact.Jake;
 import cn.com.sdq.smilefriends.presenter.JakeGifPresenter;
@@ -109,6 +110,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         ButterKnife.bind(this, view);
         initView(view);
         initData();
+
         L.i(TAG, "--------------onCreateView");
         return view;
     }
@@ -128,7 +130,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         homepageBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         homepageBanner.setImageLoader(new GlideImageLoader());
         homepageBanner.setImages(images);
-        homepageBanner.setBannerAnimation(Transformer.CubeOut);
+        homepageBanner.setBannerAnimation(Transformer.DepthPage);
         homepageBanner.isAutoPlay(true);
         homepageBanner.setDelayTime(10000);
         homepageBanner.setIndicatorGravity(BannerConfig.CENTER);
@@ -142,6 +144,14 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         setPresenter(mJakePresenter);
         mJakeGifPresenter = new JakeGifPresenter(this);
         setPresenter(mJakeGifPresenter);
+        List<String> images=new ArrayList<>();
+        images.add(AppConstans.GET_BANNDER_ONE);
+        images.add(AppConstans.GET_BANNDER_TWO);
+        images.add(AppConstans.GET_BANNDER_FOUR);
+        images.add(AppConstans.GET_BANNDER_THERE);
+        images.add(AppConstans.GET_BANNDER_FIVE);
+        images.add("http://img2.imgtn.bdimg.com/it/u=3864616157,616541977&fm=26&gp=0.jpg");
+        initBanner(images);
 
     }
 
@@ -286,7 +296,6 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 mHandler.sendEmptyMessage(TAB_ONE_REFRESH);
                 break;
             case TAB_TWO_REFRESH:
-//                L.i(TAG,"反馈数据成功刷新数据");
                 for (JakeBean j : data
                         ) {
                     L.i(TAG, "反馈数据成功刷新数据" + j.toString());

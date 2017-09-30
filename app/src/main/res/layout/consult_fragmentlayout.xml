@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_menu_new_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#008f00"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="#008f00"
+        app:tabTextColor="#808080"
+        />
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#008f00"
+        android:layout_below="@+id/tab_menu_new_class"
+        android:orientation="horizontal"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_new_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/app_message"
-        android:layout_centerInParent="true"
-        style="@style/layout_changgui"
+        android:layout_below="@+id/line"
         />
+
 </RelativeLayout>

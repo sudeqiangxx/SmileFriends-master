@@ -1,5 +1,6 @@
 package cn.com.sdq.smilefriends.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import cn.com.sdq.smilefriends.base.BaseFragment;
 import cn.com.sdq.smilefriends.bean.JakeBean;
 import cn.com.sdq.smilefriends.contact.Jake;
 import cn.com.sdq.smilefriends.presenter.JakeGifPresenter;
+import cn.com.sdq.smilefriends.ui.activity.GifActivity;
 import cn.com.sdq.smilefriends.ui.adapter.JakeGifAdapter;
 
 /**
@@ -121,6 +123,16 @@ public class FragmentTwo extends BaseFragment implements Jake.View {
                 }
             }
         });
+        mAdapter.setOnClickItemListener(new JakeGifAdapter.onItemClickListener() {
+            @Override
+            public void onItemClicklistener(int position) {
+                Intent intent=new Intent();
+                intent.setClass(getActivity(), GifActivity.class);
+                intent.putExtra("imageurl",mDatas.get(position).getUrl());
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

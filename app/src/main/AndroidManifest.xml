@@ -2,8 +2,61 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.com.sdq.smilefriends">
 
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 网络权限 -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 外部存储读权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 允许联网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- 微信 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 友盟分享 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 如果需要精确定位的话请加上此权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -12,7 +65,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.activity.MainActivity"></activity>
+        <activity android:name=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.AppStart"
             android:theme="@style/Theme.AppStartLoad">
@@ -22,7 +75,77 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.ShareActivity"></activity>
+        <activity android:name=".ui.activity.ShareActivity" />
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="119784-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="c91af1c8a2e5063b5c04f36be84a4bb2" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDzjE6wZ7noOFv0Ij1fRM5vaE/mD9RTlGBOKj31Gngvu5H9yM3v8iN7m09OulfFmjN6LtnYgtB6+6hSJAYVAgAawFtcNHxvLrrV1me8Z00lEeFB3AydM1yM1/5NFtKHubmnMLVBb8lUDbGbAfhhAXTs/yK1WDXXk2PLu5G8jsk5IHMzncjJvOyzdKz+cmKijfBC6HAt/iJTb0HQg5Y9p0m9zeWgnl5fdLECILPRcmoVO3eTjgLa1EIDBStTsjlIOwhxyjpW5lUkGe2r66oa2S9s4DdOzGczyV950CAY62JZZoh36PG21mGq6L8MHW5HXu9Hvc2jqqWk+ldGBrLVG5iRAgMBAAECggEBAPMJBZFFwR/59dD2xhWmvPYxuuGS1EgfXcdCohdQNbU0UWhWlSMnl78GairfCy2WRl5cGGnViKPhM8PcTPFz0JThdYnamn38vNcdIOHCmBow8H9fTnskwOuPsyZMawSkEp7DnWzSV674B07utWRgJsVFiOY8Q2Z/n2u0HqdyOV01kS1yh0r67vjAVeSS5Wpv0BMGCNH9mi06DyFQzkg3xnSlhv4x4IHC9Ni30bAOrWIpEEbPp3uyOZLbOzaYO99ddAS2dAwJD6+xeD1gQxlKdVWzIRc3216Rkl13CQvew3P5L1Z5FmSqcU52jhXD38MlYZJqbQ3mu1QZu4WyEe1eU70CgYEA/sCM+XU+8u5j8uPs1cy1Ozlw3pOpTFVdxKKNy+ysJD25GOzw0pmXhMMFXBOPZ2qPO8lZTYo5VOrZoxwWCI4WxVNRCmM0l008z/IueogwaiwqsLydTGox4yjlEAo67X8fDlAKPAe6fKTlyeHAO1vafcPm+6fWjP6VbH4ndAnE1f8CgYEA9L21DHu1vKitOjYrjq+A9ZEqFEo+jeaoucIBFMLL/5hf0TVeFItrbsUIWSvGc/F0qp2j7YpYHhJMldYSi5ksSwiK+ra2/+56mRHm3Wch63X/lGk+P021P087wrtnE0JQg65POwi4A5l4AkIM6m2z+Dsi6jx66LDlefUQ1rYzMW8CgYAhYgIXPnH9S5f1YEDM04J8PE66HAd3ZUhgWBzUuDLmnOAAkCwOrOnaD+RH6JhGKQSUBRKawp44rn3OjgOlI1mAiiZ4gf+GRCzP4yCMFgSiJR+DAXRraw8WgWli7LREIwBi08JDk4+wfbtO9TJHlQXQrTc7iwbmewYBrZZl8lHE6QKBgCf0THlEPPAWrWkCbOv3VNtCHpd/Y2TxEfx5YonMH1eTvZi+2KQL+rbzraA5GEXXVk+AOsHNwwLtw9j2QMLPd76sH1w8tfVkLlmM5Z6hdpUlB1toLwRQoFU8jyoERBiNy+0jaMXfb4MO69uagtdGn4nXxaRtyTbxohTd4CjdR9A7AoGBAIpagmFYnzS/E2bWTEG7h2bZGz5MoGTTsK6vWgo2+UBmlQ5JyrU7dew//N3duEVGnliw0COk9uDUOVRMBrqwu/pz1n8t6m5PiHeDFCByFOWK8E4o6Tq5fllq+4fiM0jh1tpfjzZYa/pcO4Vv3xPQkz7k6B2JKfmys5T/GOG55fV7" />
+
+        <activity android:name=".ui.activity.HtmlActivity" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value=" 59929cc34544cb15ae000881" />
+
+        <activity android:name=".ui.activity.FaceTestActivity" />
+        <activity android:name=".ui.activity.FaceTestOneActivity" />
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen" />
+        <activity android:name=".HelloArActivity" />
+        <activity android:name=".ui.activity.GifActivity" />
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="1106181539" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--&lt;!&ndash; BDAPPUNIONSDK start &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="com.baidu.ops.appunion.sdk.activity.AppListActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize" />-->
+        <!--<activity-->
+            <!--android:name="com.baidu.ops.appunion.sdk.activity.WebActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize" />-->
+
+        <!--<service-->
+            <!--android:name="com.baidu.ops.appunion.sdk.service.AppUnionService"-->
+            <!--android:exported="false"-->
+            <!--android:label="AppUnionService" />-->
+
+        <!--<meta-data-->
+            <!--android:name="BDAPPUNIONSDK_APIKEY"-->
+            <!--android:value="110022b" />-->
+        <!--&lt;!&ndash; BDAPPUNIONSDK end &ndash;&gt;-->
+
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" />
+
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity android:name=".ui.activity.MyDaShangActivity" />
+        <activity android:name=".ui.activity.DeveloperActivity" />
+        <activity android:name=".ui.activity.TaoLunActivity"></activity>
     </application>
 
 </manifest>

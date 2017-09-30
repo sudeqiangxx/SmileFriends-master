@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/reverse_anim.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/reverse_anim.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/showanim.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/showanim.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/dismissanim.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/dismissanim.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/slide_out_bottom.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/slide_in_bottom.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/anim_rotate_0_to_180.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/anim_rotate_0_to_180.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/rotating.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/rotating.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/anim_rotate_180_to_0.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/anim_rotate_180_to_0.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/actionsheet_dialog_out.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/actionsheet_dialog_out.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/actionsheet_dialog_in.xml",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/src/main/res/anim/actionsheet_dialog_in.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/sudeqiang/.android/build-cache/5f92b6c693c66854da68defe48897e5797532277/output/res/anim/abc_slide_in_bottom.xml"
+    }
+]

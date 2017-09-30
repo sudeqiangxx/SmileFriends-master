@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 根布局容器ID -->
+    <item name="content_view" type="id"/>
+    <!-- 内容视图容器的ID -->
+    <item name="content_view_root_layout" type="id"/>
+    <!-- 有数据的容器 -->
+    <item name="content_view_data_layout" type="id"/>
+    <!-- 数据为空的容器 -->
+    <item name="content_view_empty_layout" type="id"/>
+    <!-- 加载视图容器的ID -->
+    <item name="loading_view_root_layout" type="id"/>
+    <!-- 加载等待 -->
+    <item name="loading_view_waiting_layout" type="id"/>
+    <!-- 加载错误 -->
+    <item name="loading_view_error_layout" type="id"/>
+    <!-- 下拉刷新布局 -->
+    <item name="swipe_refresh_layout" type="id"/>
+    <!-- listView Item Position Tag -->
+    <item name="list_item_position" type="id"/>
+</resources>

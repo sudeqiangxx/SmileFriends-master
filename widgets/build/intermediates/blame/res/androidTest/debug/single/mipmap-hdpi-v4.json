@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/androidTest/debug/mipmap-hdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/bundles/debug/res/mipmap-hdpi-v4/default_ptr_rotate.png"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/androidTest/debug/mipmap-hdpi-v4/ic_pulltorefresh_arrow.png",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/bundles/debug/res/mipmap-hdpi-v4/ic_pulltorefresh_arrow.png"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/androidTest/debug/mipmap-hdpi-v4/ic_launcher_round.png",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/bundles/debug/res/mipmap-hdpi-v4/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/res/merged/androidTest/debug/mipmap-hdpi-v4/arrow.png",
+        "source": "/Users/sudeqiang/Downloads/SmileFriends-master/widgets/build/intermediates/bundles/debug/res/mipmap-hdpi-v4/arrow.png"
+    }
+]

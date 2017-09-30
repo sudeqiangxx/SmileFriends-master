@@ -15,6 +15,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobConfig;
 import cn.com.sdq.smilefriends.R;
 import cn.com.sdq.smilefriends.ui.fragment.ConsultFragment;
 import cn.com.sdq.smilefriends.ui.fragment.ContentFragment;
@@ -49,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
     private int res = R.drawable.content_music;
     private LinearLayout linearLayout;
     private List<TabItem> mTableItemList;
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS=0;
+    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,38 +80,41 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
                 Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
 
-        }else{
+        } else {
             //
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_CONTACTS);
         }
+        initBmob();
 
     }
 
-    public void setStatusBar(boolean navi){
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-            Window window=getWindow();
+
+    public void setStatusBar(boolean navi) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
-            if (navi){
+            if (navi) {
                 window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN
-                |View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        |View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 );
 
                 window.setStatusBarColor(Color.TRANSPARENT);
-            }else {
+            } else {
                 window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                |View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 );
 
             }
-        }else if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -172,7 +179,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                if (slideOffset > 0.6 && linearLayout.getChildCount() == 0);
+                if (slideOffset > 0.6 && linearLayout.getChildCount() == 0) ;
 //                    viewAnimator.showMenuContent();
             }
 
@@ -200,20 +207,51 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
+    }
+    private void initBmob() {
+        //第一：默认初始化
+//        Bmob.initialize(this, "04df4f7b5350319e18d954be33bf9d9f");
+        // 注:自v3.5.2开始，数据sdk内部缝合了统计sdk，开发者无需额外集成，传渠道参数即可，不传默认没开启数据统计功能
+        //Bmob.initialize(this, "Your Application ID","bmob");
+
+        //第二：自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
+        BmobConfig config = new BmobConfig.Builder(this)
+                ////设置appkey
+                .setApplicationId("04df4f7b5350319e18d954be33bf9d9f")
+                ////请求超时时间（单位为秒）：默认15s
+                .setConnectTimeout(30)
+                ////文件分片上传时每片的大小（单位字节），默认512*1024
+                .setUploadBlockSize(1024 * 1024)
+                ////文件的过期时间(单位为秒)：默认1800s
+                .setFileExpiration(2500)
+                .build();
+        Bmob.initialize(config);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
+
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
+            case R.id.menu_about:
+
+                break;
+            case R.id.menu_settings:
+                Log.i("", "---------点击关于我们");
+                break;
+            case R.id.menu_quit:
+                break;
             default:
-                return super.onOptionsItemSelected(item);
+
+                break;
         }
+//        if (drawerToggle.onOptionsItemSelected(item)) {
+//            return true;
+//        } else {
+//
+//            return super.onOptionsItemSelected(item);
+//        }
+        return true;
     }
 
 
@@ -319,9 +357,9 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
             }
             if (textView != null && title != 0) {
                 if (isChecked) {
-                    textView.setTextColor(getResources().getColor(R.color.main_botton_text_select));
+                    textView.setTextColor(getResources().getColor(R.color.tab_select_ed));
                 } else {
-                    textView.setTextColor(getResources().getColor(R.color.main_bottom_text_normal));
+                    textView.setTextColor(getResources().getColor(R.color.tab_select_def));
                 }
             }
         }
@@ -332,9 +370,9 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
     private void initTabData() {
         mTableItemList = new ArrayList<>();
         //添加tab
-        mTableItemList.add(new TabItem(R.drawable.main_bottom_home_normal, R.drawable.main_bottom_home_press, R.string.main_home_text, HomeFragment.class));
-        mTableItemList.add(new TabItem(R.drawable.main_bottom_consult_normal, R.drawable.main_bottom_consult_press, R.string.main_consult_text, ConsultFragment.class));
-        mTableItemList.add(new TabItem(R.drawable.main_bottom_mine_normal, R.drawable.main_bottom_mine_press, R.string.main_mine_text, MineFragment.class));
+        mTableItemList.add(new TabItem(R.mipmap.home_d, R.mipmap.home, R.string.main_home_text, HomeFragment.class));
+        mTableItemList.add(new TabItem(R.mipmap.new_d, R.mipmap.new_icon, R.string.main_consult_text, ConsultFragment.class));
+        mTableItemList.add(new TabItem(R.mipmap.my_icon, R.mipmap.my_icon_p, R.string.main_mine_text, MineFragment.class));
 
     }
 
@@ -343,7 +381,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
         //实例化FragmentTabHost对象
         FragmentTabHost fragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
-
+        fragmentTabHost.setBackgroundColor(Color.WHITE);
         //去掉分割线
         fragmentTabHost.getTabWidget().setDividerDrawable(null);
 
@@ -354,7 +392,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
             fragmentTabHost.addTab(tabSpec, tabItem.getFragmentClass(), null);
 
             //给Tab按钮设置背景
-            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.main_bottom_bg));
+            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.color_white));
 
             //默认选中第一个tab
             if (i == 0) {

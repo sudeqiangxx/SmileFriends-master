@@ -3,8 +3,15 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="yalantis.com.sidemenu.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+        android:id="@+id/menu_settings"
+        android:orderInCategory="1"
+        android:title="关于我们"/>
+    <item
+        android:id="@+id/menu_about"
+        android:orderInCategory="2"
+        android:title="秀一秀"/>
+    <item
+        android:id="@+id/menu_quit"
+        android:orderInCategory="3"
+        android:title="个人设置"/>
 </menu>

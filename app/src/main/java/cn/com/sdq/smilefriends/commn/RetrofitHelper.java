@@ -5,10 +5,10 @@ import java.util.List;
 
 import cn.com.sdq.smilefriends.bean.JakeBean;
 import cn.com.sdq.smilefriends.util.utils.Constants;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+//import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 /**
@@ -22,8 +22,8 @@ public class RetrofitHelper {
     public RetrofitHelper() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AppConfig.NEW_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         mJakeListService = retrofit.create(JakeService.class);
 
