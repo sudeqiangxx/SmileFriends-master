@@ -141,6 +141,59 @@
             android:drawableRight="@mipmap/next_pages" />
 
     </RelativeLayout>
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white"
+    android:id="@+id/rl_ar"
+        android:layout_below="@+id/rl_fankui"
+        android:layout_marginTop="@dimen/view_distance_l"
+    >
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="AR体验"
+    android:textColor="@color/text_color_333"
+    android:textSize="16sp"
+    />
+    <TextView
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:drawableRight="@mipmap/next_pages"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_margin="10dp"
+    />
+
+    </RelativeLayout>
+    <RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white"
+    android:id="@+id/rl_ar_video"
+    android:layout_below="@+id/rl_ar"
+    android:layout_marginTop="10dp"
+    >
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="AR视频"
+    android:textColor="@color/text_color_333"
+    android:textSize="16sp"
+    />
+    <TextView
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:drawableRight="@mipmap/next_pages"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_margin="10dp"
+    />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

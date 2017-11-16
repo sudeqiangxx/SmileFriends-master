@@ -211,7 +211,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private void initTabs() {
         ViewPageInfo viewPageInfoJakeText = new ViewPageInfo("最新笑话", "textfragment", FragmentOne.class);
         ViewPageInfo viewPageInfoJakeGif = new ViewPageInfo("gif动画", "giffragment", FragmentTwo.class);
-        ViewPageInfo viewPageInfoJake = new ViewPageInfo("最新笑话", "jakefragment", FragmentThree.class);
+        ViewPageInfo viewPageInfoJake = new ViewPageInfo("视频", "jakefragment", FragmentThree.class);
         viewPageInfos.add(viewPageInfoJakeText);
         viewPageInfos.add(viewPageInfoJakeGif);
         viewPageInfos.add(viewPageInfoJake);

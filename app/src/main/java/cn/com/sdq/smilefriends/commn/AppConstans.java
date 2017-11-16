@@ -11,8 +11,8 @@ public interface AppConstans {
     String GET_BANNDER_FOUR="https://github.com/sudeqiangxx/SmileFriends-master/blob/master/app/src/main/res/mipmap-xhdpi/banner4.jpg?raw=true";
     String GET_BANNDER_FIVE="https://github.com/sudeqiangxx/SmileFriends-master/blob/master/app/src/main/res/mipmap-xhdpi/banner5.jpg?raw=true";
 
-    String[] NEWS_CLASS={"头条","社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
-    String[] NEWS_CLASS_VALUE={"top","shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"};
+    String[] NEWS_CLASS={"头条","社会","国内","国际","娱乐","体育","科技","财经","时尚"};
+    String[] NEWS_CLASS_VALUE={"top","shehui","guonei","guoji","yule","tiyu","keji","caijing","shishang"};
     String[] KEYWORDS={"天造地设",
             "才子佳人",
             "英雄美人",

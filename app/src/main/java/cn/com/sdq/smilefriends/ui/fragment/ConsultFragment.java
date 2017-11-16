@@ -1,33 +1,54 @@
 package cn.com.sdq.smilefriends.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.HttpParams;
+import com.lzy.okgo.request.BaseRequest;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.com.sdq.smilefriends.R;
+import cn.com.sdq.smilefriends.ar.ARActivity;
 import cn.com.sdq.smilefriends.base.BaseTwoFragment;
+import cn.com.sdq.smilefriends.bean.PhotoJson;
+import cn.com.sdq.smilefriends.commn.AppConfig;
 import cn.com.sdq.smilefriends.commn.AppConstans;
-import cn.com.sdq.smilefriends.ui.adapter.MyFragmentPagerAdapter;
+import cn.com.sdq.smilefriends.commn.okhttp.JsonCallback;
+import cn.com.sdq.smilefriends.commn.okhttp.StringUtils;
+import cn.com.sdq.smilefriends.commn.okhttp.WrapUrl;
+import cn.com.sdq.smilefriends.ui.adapter.PhotoAdapter;
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/2/11.
  */
 
-public class ConsultFragment extends BaseTwoFragment implements AppConstans{
+public class ConsultFragment extends BaseTwoFragment implements AppConstans {
 
-    @Bind(R.id.tab_menu_new_class)
-    TabLayout tabMenuNewClass;
-    @Bind(R.id.vp_new_content)
-    ViewPager vpNewContent;
-    private MyFragmentPagerAdapter myFragmentPagerAdapter;
+    @Bind(R.id.rlv_photo)
+    RecyclerView rlvPhoto;
+    @Bind(R.id.srl_photo)
+    SmartRefreshLayout srlPhoto;
+    private PhotoAdapter mPhotoAdapter;
+    private List<PhotoJson.Data> mPhotoData;
+    private int currentPage=0;
 
     @Override
     protected boolean hasTitleBar() {
@@ -41,46 +62,97 @@ public class ConsultFragment extends BaseTwoFragment implements AppConstans{
 
     @Override
     protected void initView() {
-        initTab();
-
-    }
-
-    private void initTab() {
-        initTitles(NEWS_CLASS);
-    }
-    private void initTitles(String[] titles) {
-        if (titles != null) {
-
-            List<BaseTwoFragment> listFragments = new ArrayList<>();
-            for (int i = 0; i < titles.length; i++) {
-//                if (i == 0) {
-//                    listFragments.add(new HomePageFragment());
-//                } else {
-//                    BaseTwoFragment fragment = new CommodityClassFragment();
-//                    fragment.setCatetoryId(categoryIds.get(i - 1));
-//                    listFragments.add(fragment);
-//                }
-                BaseTwoFragment fragment =new NewsFragment();
-                fragment.setCatetoryId(i+"");
-                listFragments.add(fragment);
+        srlPhoto.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshLayout) {
+                currentPage++;
+                getPhoto(currentPage,false,true);
             }
-            initTabView(titles, listFragments);
-        }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                currentPage=1;
+                getPhoto(currentPage,true,false);
+            }
+        });
+        getPhoto(1,false,false);
     }
 
-    private void initTabView(String[] titles, List<BaseTwoFragment> fragments) {
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), titles, fragments);
-        vpNewContent.setAdapter(myFragmentPagerAdapter);
-//        vpNewContent.setNoScroll(true);//控制ViewPager是否可以左右滑动(true表示不可以)
-        if (titles != null && titles.length > 0) {
-            vpNewContent.setOffscreenPageLimit(titles.length);
-        } else {
-            vpNewContent.setOffscreenPageLimit(20);
-        }
-//        lmdNspViewpager.setNoScroll(false);
-        //将TabLayout和ViewPager绑定在一起，使双方各自的改变都能直接影响另一方，解放了开发人员对双方变动事件的监听
-        tabMenuNewClass.setupWithViewPager(vpNewContent);
-        //指定Tab的位置
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+
+
+    private void initRlv(List<PhotoJson.Data> data){
+        mPhotoData=data;
+        mPhotoAdapter=new PhotoAdapter(R.layout.item_photo_layout,mPhotoData,getActivity());
+        rlvPhoto.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        rlvPhoto.setAdapter(mPhotoAdapter);
+    }
+    public static final String AR_KEY = "arvideo";
+    public static final int AR_VALUE = 1;
+
+    private void getPhoto(int page, final boolean isRefresh, final boolean isMore){
+        String url= WrapUrl.wrapG(AppConfig.GRILD_URL);
+        String pages= page+"";
+        StringBuffer sb=new StringBuffer();
+        sb.append(url);
+        sb.append(pages);
+
+        OkGo.get(sb.toString())
+                .execute(new JsonCallback<PhotoJson>() {
+                    @Override
+                    public void onSuccess(PhotoJson photoJson, Call call, Response response) {
+                        if (photoJson!=null&&!photoJson.isError()){
+                            List<PhotoJson.Data> datas=photoJson.getResults();
+                            if (datas!=null&&datas.size()>0){
+                                if (isRefresh){
+                                    initRlv(datas);
+                                }else if (isMore){
+                                    if (mPhotoData==null){
+                                        mPhotoData=new ArrayList<PhotoJson.Data>();
+                                    }
+                                    mPhotoData.addAll(mPhotoData.size(),datas);
+
+                                }else {
+                                    initRlv(datas);
+                                }
+                            }
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onAfter(PhotoJson photoJson, Exception e) {
+                        super.onAfter(photoJson, e);
+                        srlPhoto.finishLoadmore();
+                        srlPhoto.finishRefresh();
+                    }
+
+                    @Override
+                    public void onBefore(BaseRequest request) {
+                        super.onBefore(request);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                    }
+                });
+
+    }
 }

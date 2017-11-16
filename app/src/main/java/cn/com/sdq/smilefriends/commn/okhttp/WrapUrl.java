@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import cn.com.sdq.smilefriends.commn.APIService;
+import cn.com.sdq.smilefriends.commn.AppConfig;
+import cn.com.sdq.smilefriends.commn.AppConstans;
+import cn.com.sdq.smilefriends.manager.AppApi;
 
 
 /**
@@ -19,6 +22,10 @@ public class WrapUrl {
 
     public static String wrap(String url) {
         return APIService.BASE_URL + url;
+    }
+    public static String wrapG(String url){ return AppConfig.GRILD_LIST+url;}
+    public static String wrapVideo(String url){
+        return AppConfig.VIDEO_URL+url;
     }
 
     /**

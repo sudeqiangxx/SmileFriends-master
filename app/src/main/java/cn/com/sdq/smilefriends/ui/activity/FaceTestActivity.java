@@ -3,8 +3,14 @@ package cn.com.sdq.smilefriends.ui.activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +20,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.MPPointF;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -42,6 +59,7 @@ import butterknife.OnClick;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UploadBatchListener;
 import cn.com.sdq.smilefriends.R;
+import cn.com.sdq.smilefriends.ar.ARActivity;
 import cn.com.sdq.smilefriends.base.BaseActivity;
 import cn.com.sdq.smilefriends.bean.FaceJson;
 import cn.com.sdq.smilefriends.commn.APIService;
@@ -64,14 +82,14 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
     TextView tvTest;
 
     RelativeLayout rlContent;
-    private TextView tvTestResult;
 
     private PieChartView pieChartView;
+    private PieChart pieChart;
     private TextView tvCancel;
     private TextView tvShare;
     private String imageUrl1;
     private String imageUrl2;
-
+    private Typeface tf;
 
     private HashMap<String, String> paths;
     private List<PieChartView.PieceDataHolder> mPieDataList = new ArrayList<>();
@@ -103,7 +121,8 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
         llAdd = (LinearLayout) findViewById(R.id.ll_add);
         rlContent = (RelativeLayout) findViewById(R.id.rl_content);
         pieChartView = (PieChartView) findViewById(R.id.pieChart);
-        tvTestResult = (TextView) findViewById(R.id.tv_test_result);
+        pieChart= (PieChart) findViewById(R.id.piechart_view);
+
         tvCancel = (TextView) findViewById(R.id.tv_cancel);
         tvShare = (TextView) findViewById(R.id.tv_share);
         ivIamge1.setOnClickListener(this);
@@ -117,6 +136,8 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
         initData();
         pieChartView.setPieChartCircleRadius(200);
         pieChartView.setData(mPieDataList);
+        pieChart.setHoleRadius(400);
+
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,6 +150,66 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
                 share();
             }
         });
+
+        setPieChart();
+    }
+
+    private void setPieChart() {
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
+
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+
+        tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+
+        pieChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
+//        pieChart.setCenterText(generateCenterSpannableText());
+
+        pieChart.setExtraOffsets(20.f, 0.f, 20.f, 0.f);
+
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.WHITE);
+
+        pieChart.setTransparentCircleColor(Color.WHITE);
+        pieChart.setTransparentCircleAlpha(110);
+
+        pieChart.setHoleRadius(58f);
+        pieChart.setTransparentCircleRadius(61f);
+
+        pieChart.setDrawCenterText(true);
+
+        pieChart.setRotationAngle(0);
+        // enable rotation of the chart by touch
+        pieChart.setRotationEnabled(true);
+        pieChart.setHighlightPerTapEnabled(true);
+
+        // pieChart.setUnit(" €");
+        // pieChart.setDrawUnitsInChart(true);
+
+        // add a selection listener
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry entry, Highlight highlight) {
+
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+        setData(2,100,0);
+        pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        // mChart.spin(2000, 0, 360);
+
+        Legend l = pieChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
+        l.setEnabled(false);
+        pieChart.setVisibility(View.GONE);
     }
 
     @Override
@@ -204,7 +285,7 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
         });
 
     }
-
+    private String confidence;
     private void faceAddTest(String url1, String url2) {
         OkGo.post(APIService.FACEADD_TEST)
                 .params("api_key", APIService.FACE_APP_KEY)
@@ -216,14 +297,20 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
                     public void onSuccess(FaceJson faceJson, Call call, Response response) {
                         Log.i("face++", "检测结果：" + faceJson);
                         if (faceJson == null) {
-                            tvTestResult.setText("相似度达到:" + "      " + 0 + "%");
+//                            tvTestResult.setText("相似度达到:" + "      " + 0 + "%");
+                            Toast.makeText(FaceTestActivity.this,"检测失败，请重试",Toast.LENGTH_SHORT).show();
                             return;
                         }
                         if (faceJson.getConfidence() == null) {
-                            tvTestResult.setText("相似度达到:" + "      " + 0 + "%");
+//                            tvTestResult.setText("相似度达到:" + "      " + 0 + "%");
+                            Toast.makeText(FaceTestActivity.this,"检测失败，请重试",Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        tvTestResult.setText("相似度达到:" + "      " + faceJson.getConfidence() + "%");
+//                        tvTestResult.setText("相似度达到:" + "      " + faceJson.getConfidence() + "%");
+                        float value=Float.valueOf(faceJson.getConfidence());
+                        confidence=faceJson.getConfidence();
+                        pieChart.setVisibility(View.VISIBLE);
+                        setData(2,100,value);
                     }
 
                     @Override
@@ -237,6 +324,7 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
                         super.onError(call, response, e);
                         if (response != null) {
                             Log.i("error----------->", response.body() + "");
+                            Toast.makeText(FaceTestActivity.this,"检测失败，请重试",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -312,7 +400,7 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
@@ -340,14 +428,9 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
                 }
             }
         }
-        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
-
     private void share() {
-//        UMImage umImage = new UMImage(this, imageUrl1);
-//        UMImage umImage1 = new UMImage(this, imageUrl2);
-//        ShareContent shareContent = new ShareContent();
-//        shareContent.mText = "快来看看我们的相似度把！！！！！！！！！";
+
         UMShareListener umShareListener = new UMShareListener() {
             @Override
             public void onStart(SHARE_MEDIA share_media) {
@@ -371,15 +454,88 @@ public class FaceTestActivity extends BaseActivity implements View.OnClickListen
 
             }
         };
-
         new ShareAction(FaceTestActivity.this)
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA
                         .QZONE)
-//                .withMedia(umImage)
-                .withText("快来看看我们的相似度吧")
-//                .withMedia(umImage1)
-//                .setShareContent(shareContent)
+                .withText("我和他的相似度是："+confidence+"快去百度应用下载甜眯眯检测一下吧")
                 .setCallback(umShareListener).open();
 
+    }
+
+    private void setData(int count, float range,float xiangshidu) {
+
+        float mult = range;
+
+        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+
+        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
+        // the chart.
+        for (int i = 0; i < count ; i++) {
+            if (i==0){
+                entries.add(new PieEntry( xiangshidu,
+                        mParties[i % mParties.length],
+                        getResources().getDrawable(R.drawable.star)));
+            }else if (i==1){
+                entries.add(new PieEntry( 100-xiangshidu,
+                        mParties[i % mParties.length],
+                        getResources().getDrawable(R.drawable.star)));
+            }
+        }
+
+
+        PieDataSet dataSet = new PieDataSet(entries, "Election Results");
+
+        dataSet.setDrawIcons(false);
+
+        dataSet.setSliceSpace(3f);
+        dataSet.setIconsOffset(new MPPointF(0, 40));
+        dataSet.setSelectionShift(5f);
+
+        // add a lot of colors
+
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+
+        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.JOYFUL_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.COLORFUL_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.LIBERTY_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.PASTEL_COLORS)
+            colors.add(c);
+
+        colors.add(ColorTemplate.getHoloBlue());
+
+        dataSet.setColors(colors);
+        //dataSet.setSelectionShift(0f);
+
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        data.setValueTextSize(11f);
+        data.setValueTextColor(Color.BLACK);
+        data.setValueTypeface(mTfLight);
+        pieChart.setData(data);
+
+        // undo all highlights
+        pieChart.highlightValues(null);
+
+        pieChart.invalidate();
+    }
+    private SpannableString generateCenterSpannableText() {
+
+        SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
+        s.setSpan(new RelativeSizeSpan(1.5f), 0, 14, 0);
+        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
+        s.setSpan(new RelativeSizeSpan(.65f), 14, s.length() - 15, 0);
+        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        return s;
     }
 }

@@ -19,7 +19,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.com.sdq.smilefriends.HelloArActivity;
 import cn.com.sdq.smilefriends.R;
+import cn.com.sdq.smilefriends.ar.ARActivity;
 import cn.com.sdq.smilefriends.base.BaseTwoFragment;
+import cn.com.sdq.smilefriends.commn.AppConstans;
 import cn.com.sdq.smilefriends.ui.activity.DeveloperActivity;
 import cn.com.sdq.smilefriends.ui.activity.FaceTestActivity;
 import cn.com.sdq.smilefriends.ui.activity.FaceTestOneActivity;
@@ -30,7 +32,7 @@ import cn.com.sdq.smilefriends.ui.activity.TaoLunActivity;
  * Created by Administrator on 2017/2/11.
  */
 
-public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler {
+public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler,AppConstans {
     @Bind(R.id.rl_login)
     RelativeLayout rlLogin;
     @Bind(R.id.rl_my_life)
@@ -41,7 +43,8 @@ public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler 
     RelativeLayout rlMyFabiao;
     @Bind(R.id.rl_fankui)
     RelativeLayout rlFankui;
-
+    public static final String AR_KEY = "arvideo";
+    public static final int AR_VALUE = 1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
@@ -64,6 +67,7 @@ public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler 
 
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -82,7 +86,7 @@ public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler 
         }
     }
 
-    @OnClick({R.id.rl_login, R.id.rl_my_life, R.id.rl_my_dian, R.id.rl_my_fabiao, R.id.rl_fankui})
+    @OnClick({R.id.rl_login, R.id.rl_my_life, R.id.rl_my_dian, R.id.rl_my_fabiao, R.id.rl_fankui,R.id.rl_ar, R.id.rl_ar_video})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_login:
@@ -107,6 +111,18 @@ public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler 
                 Intent intens=new Intent();
                 intens.setClass(getActivity(), TaoLunActivity.class);
                 startActivity(intens);
+                break;
+            case R.id.rl_ar:
+                Intent intent2 = new Intent();
+                intent2.setClass(getActivity(), ARActivity.class);
+                startActivity(intent2);
+
+                break;
+            case R.id.rl_ar_video:
+                Intent intents = new Intent();
+                intents.putExtra(AR_KEY, AR_VALUE);
+                intents.setClass(getActivity(), ARActivity.class);
+                startActivity(intents);
                 break;
         }
     }

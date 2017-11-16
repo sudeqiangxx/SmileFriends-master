@@ -2,9 +2,11 @@ package cn.com.sdq.smilefriends.base;
 
 import android.app.ActionBar;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -56,6 +58,8 @@ public abstract class BaseActivity extends FragmentActivity implements
         // 通过注解绑定控件
         ButterKnife.bind(this);
 
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
         init(savedInstanceState);
     }
 
@@ -183,6 +187,23 @@ public abstract class BaseActivity extends FragmentActivity implements
             return null;
         }
     }
+    protected String[] mMonths = new String[] {
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+    };
+
+    protected String[] mParties = new String[] {
+            "相似度", "不相似"
+    };
+
+    protected Typeface mTfRegular;
+    protected Typeface mTfLight;
+
+
+
+    protected float getRandom(float range, float startsfrom) {
+        return (float) (Math.random() * range) + startsfrom;
+    }
+
 
 
 

@@ -22,14 +22,13 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
         maven {
             url "http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories"
         }
-        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
         maven {
             url "https://jitpack.io"
         }
-        maven { url "https://jitpack.io" }
     }
 
 }

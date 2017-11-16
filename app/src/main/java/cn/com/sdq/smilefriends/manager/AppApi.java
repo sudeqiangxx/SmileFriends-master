@@ -35,7 +35,7 @@ public class AppApi extends MultiDexApplication {
     private static AppApi instance;
     {
         PlatformConfig.setWeixin("wxbca106014993e9ed", "474b8facfc1e0784828a027ae850cf35");
-        PlatformConfig.setQQZone("1106181539", "AzLTrjFIbMJkiVjp");
+        PlatformConfig.setQQZone("1106368797", "2qCsORLTHrmRs98k");
 //        PlatformConfig.setSinaWeibo("", "", "");
         Config.DEBUG = true;
     }
@@ -52,6 +52,7 @@ public class AppApi extends MultiDexApplication {
         instance = this;
         okGoInit();
 //        initBmob();
+        UMShareAPI.get(this);
         weixin();
         initUm();
     }

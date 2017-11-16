@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008f00</color>
-    <color name="colorPrimaryDark">#008f00</color>
+    <color name="colorPrimary">#fb7299</color>
+    <color name="colorPrimaryDark">#fb7299</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="main_botton_text_select">#008f00</color>
+    <color name="main_botton_text_select">#fb7299</color>
     <color name="main_bottom_text_normal">#020204</color>
     <color name="main_bottom_bg">#dfdfdf</color>
     <color name="color_divider">#ffd6d6d6</color>
     <color name="app_start_bg">#00ffffff</color>
     <color name="color_white">#ffffff</color>
     <color name="blue">#33b5e5</color>
-    <color name="tab_select_ed">#1afa29</color>
+    <color name="tab_select_ed">#fb7299</color>
     <color name="tab_select_def">#bfbfbf</color>
-
+    <color name="gray">#BEBBB4</color>
+    <color name="pink_text_color">#fb7299</color>
+    <color name="item_tag_background">@color/white</color>
+    <color name="refresh_pink_background">#fb7299</color>
+    <color name="bili_logo_pink_color">#fb7299</color>
+    <color name="focus_text_color">#fb7299</color>
 </resources>

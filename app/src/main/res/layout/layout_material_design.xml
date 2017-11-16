@@ -54,7 +54,9 @@
         <cn.com.sdq.smilefriends.widgte.NoScrollViewPager
             android:id="@+id/lmd_nsp_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            />
 
     </LinearLayout>
 

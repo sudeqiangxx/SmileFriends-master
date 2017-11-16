@@ -15,10 +15,10 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("/Users/sudeqiang/tmm/tianmimi.jks") //签名文件路径
-            storePassword "123456"
+            storeFile file("/Users/sudeqiang/tmm/tmmkey/androidkey.jks") //签名文件路径
+            storePassword "sudeqiang1814"
             keyAlias "sdq"
-            keyPassword "123456"  //签名密码
+            keyPassword "sudeqiang1814"  //签名密码
         }
     }
     buildTypes {
@@ -62,7 +62,6 @@ android {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     compile project(path: ':banner')
     compile project(path: ':okgo')
     compile project(path: ':widgets')
@@ -79,6 +78,12 @@ dependencies {
     compile files('libs/weiboSDKCore_3.1.4.jar')
     compile files('libs/obj-0.2.1.jar')
     compile project(':arcore_client')
+    //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    compile files('libs/BmobSDK_3.5.7_20170905.jar')
+    compile files('libs/rxandroid-1.2.0.jar')
+    compile files('libs/rxjava-1.1.6.jar')
+    compile files('libs/org.apache.http.legacy.jar')
+    compile files('libs/EasyAR.jar')
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:cardview-v7:25.3.1'
@@ -95,17 +100,19 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.5'
     compile 'com.pnikosis:materialish-progress:1.7'
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'cn.bmob.android:bmob-sdk:3.5.5'
-    compile 'cn.bmob.android:bmob-push:0.8'
-    compile 'cn.bmob.android:bmob-im:2.0.5@aar'
-    compile 'cn.bmob.android:bmob-sms:1.0.1'
-    compile 'cn.bmob.android:http-legacy:1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile 'com.lzy.widget:imagepicker:0.3.5'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.github.Idtk:SmallChart:v0.1.1'
     compile 'com.android.support:multidex:1.0.1'
+    testCompile 'junit:junit:4.12'
+    //辅助类
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //下拉刷新库
+    //稳定版
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
+    compile 'com.shuyu:GSYVideoPlayer:2.1.1'
 }
 
 

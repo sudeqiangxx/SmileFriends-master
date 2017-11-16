@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
 import cn.com.sdq.smilefriends.R;
@@ -226,7 +227,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
                 ////文件的过期时间(单位为秒)：默认1800s
                 .setFileExpiration(2500)
                 .build();
-        Bmob.initialize(config);
+        Bmob.initialize(this,"04df4f7b5350319e18d954be33bf9d9f");
     }
 
     @Override
@@ -245,7 +246,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
 
                 break;
         }
-//        if (drawerToggle.onOptionsItemSelected(item)) {
+//        if (drawerToggle.ookio-1.12.0.jarnOptionsItemSelected(item)) {
 //            return true;
 //        } else {
 //

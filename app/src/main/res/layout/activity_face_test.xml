@@ -30,6 +30,7 @@
             android:textColor="@color/text_color_333"
             />
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,26 +100,24 @@
                 <cn.com.sdq.smilefriends.widgte.PieChartView
                     android:id="@+id/pieChart"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></cn.com.sdq.smilefriends.widgte.PieChartView>
+                    android:layout_height="0dp"></cn.com.sdq.smilefriends.widgte.PieChartView>
+
 
                 <TextView
                     android:id="@+id/tv_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
-                    android:padding="@dimen/view_distance_xxl"
                     android:text="人脸对比结果："
                     android:textColor="@color/text_color_333" />
 
-                <TextView
-                    android:id="@+id/tv_test_result"
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="400dp"
+                    android:layout_centerInParent="true"
                     android:layout_below="@+id/tv_hint"
-                    android:gravity="top"
-                    android:padding="@dimen/view_distance_xxl"
-                    android:textColor="@color/text_color_333" />
-
+                    />
             </RelativeLayout>
 
         </RelativeLayout>

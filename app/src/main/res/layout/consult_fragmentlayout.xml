@@ -2,35 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_menu_new_class"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="#008f00"
-        app:tabIndicatorHeight="2dp"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#008f00"
-        app:tabTextColor="#808080"
-        />
-    <LinearLayout
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#008f00"
-        android:layout_below="@+id/tab_menu_new_class"
-        android:orientation="horizontal"
-        />
+        app:srlAccentColor="@android:color/white"
+        app:srlHeaderMaxDragRate="2.5"
+        app:srlPrimaryColor="#dd0000"
+        >
+        <com.scwang.smartrefresh.header.DeliveryHeader
+            android:id="@+id/header_fixed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rlv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <com.scwang.smartrefresh.layout.footer.BallPulseFooter
+            android:id="@+id/footer_fixed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_new_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/line"
-        />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
 
 </RelativeLayout>

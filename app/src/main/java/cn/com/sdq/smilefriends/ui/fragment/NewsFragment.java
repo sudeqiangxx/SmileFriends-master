@@ -23,6 +23,7 @@ import cn.com.sdq.smilefriends.R;
 import cn.com.sdq.smilefriends.base.BaseTwoFragment;
 import cn.com.sdq.smilefriends.bean.NewsJson;
 import cn.com.sdq.smilefriends.commn.APIService;
+import cn.com.sdq.smilefriends.commn.AppConfig;
 import cn.com.sdq.smilefriends.commn.AppConstans;
 import cn.com.sdq.smilefriends.commn.okhttp.JsonCallback;
 import cn.com.sdq.smilefriends.commn.okhttp.StringUtils;
@@ -134,16 +135,12 @@ public class NewsFragment extends BaseTwoFragment {
     }
 
     private void getNews() {
-        String url = WrapUrl.wrap(APIService.GET_NEWS);
-        int id = Integer.valueOf(getCatetoryId());
-        String valule = AppConstans.NEWS_CLASS_VALUE[id];
-        HashMap params = new HashMap();
-        params.put("key", APIService.APP_KEY);
-        params.put("type", valule);
+        String url = WrapUrl.wrap(AppConfig.LIST_PA);
+
+
         OkGo.post(url)
-                .params(params)
-                .tag("new")
-                .cacheKey("getnews")
+                .tag("grild")
+                .cacheKey("grild")
                 .execute(new JsonCallback<NewsJson>() {
                     @Override
                     public void onBefore(BaseRequest request) {

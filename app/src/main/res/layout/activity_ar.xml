@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.com.sdq.smilefriends.ar.ARActivity">
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_color_333"
+        android:text="AR体验教程：\n
+        \n1.把下面图片点击发送到其他手机上，或者通过qq,微信分享到朋友手机上。\n2.点击体验进入摄像头模块，摄像头对准图片，即可体验AR"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rlv_image_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_hint"
+        android:layout_above="@+id/tv_tiyan"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:id="@+id/tv_tiyan"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="畅享AR"
+        android:textColor="#118811"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        />
+
+
+</RelativeLayout>
