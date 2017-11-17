@@ -45,6 +45,12 @@ public class MineFragment extends BaseTwoFragment implements IWXAPIEventHandler,
     RelativeLayout rlFankui;
     public static final String AR_KEY = "arvideo";
     public static final int AR_VALUE = 1;
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);

@@ -64,6 +64,11 @@ public class NewsFragment extends BaseTwoFragment {
 
 
     @Override
+    public boolean onBackPressed() {
+        return false;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
