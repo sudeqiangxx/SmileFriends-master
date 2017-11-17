@@ -57,6 +57,16 @@ public class FragmentThree extends BaseTwoFragment {
     private boolean mFull=false;
 
     @Override
+    public boolean onBackPressed() {
+        if (mFull){
+
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("FragmentOne", "onCreate");
@@ -123,7 +133,7 @@ public class FragmentThree extends BaseTwoFragment {
 
                 //这是滑动自动播放的代码
                 if (!mFull) {
-                    scrollCalculatorHelper.onScroll(recyclerView, firstVisibleItem, lastVisibleItem, lastVisibleItem - firstVisibleItem);
+                    scrollCalculatorHelper.onScroll(rlvVideo, firstVisibleItem, lastVisibleItem, lastVisibleItem - firstVisibleItem);
                 }
             }
         });
@@ -139,6 +149,7 @@ public class FragmentThree extends BaseTwoFragment {
         }
 
     }
+
 
 
     private void getVideos(final boolean isNextPage) {
@@ -185,4 +196,6 @@ public class FragmentThree extends BaseTwoFragment {
         ButterKnife.unbind(this);
         GSYVideoPlayer.releaseAllVideos();
     }
+
+
 }
