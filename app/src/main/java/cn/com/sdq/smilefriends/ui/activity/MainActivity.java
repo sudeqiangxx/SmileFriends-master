@@ -35,6 +35,8 @@ import butterknife.ButterKnife;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
 import cn.com.sdq.smilefriends.R;
+import cn.com.sdq.smilefriends.base.BaseTwoFragment;
+import cn.com.sdq.smilefriends.interf.BackHadleInterface;
 import cn.com.sdq.smilefriends.ui.fragment.ConsultFragment;
 import cn.com.sdq.smilefriends.ui.fragment.ContentFragment;
 import cn.com.sdq.smilefriends.ui.fragment.HomeFragment;
@@ -45,7 +47,7 @@ import yalantis.com.sidemenu.interfaces.ScreenShotable;
 import yalantis.com.sidemenu.model.SlideMenuItem;
 import yalantis.com.sidemenu.util.ViewAnimator;
 
-public class MainActivity extends ActionBarActivity implements ViewAnimator.ViewAnimatorListener {
+public class MainActivity extends ActionBarActivity implements ViewAnimator.ViewAnimatorListener,BackHadleInterface {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private List<SlideMenuItem> list = new ArrayList<>();
@@ -55,7 +57,7 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
     private LinearLayout linearLayout;
     private List<TabItem> mTableItemList;
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
-
+    private BaseTwoFragment mBackHandedFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -282,6 +284,12 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
         linearLayout.addView(view);
     }
 
+    @Override
+    public void setSelectedFragment(BaseTwoFragment selectedFragment) {
+        this.mBackHandedFragment = selectedFragment;
+
+    }
+
     class TabItem {
         //正常情况下显示的图片
         private int imageNormal;
@@ -415,5 +423,15 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        if(mBackHandedFragment == null || !mBackHandedFragment.onBackPressed()){
+            if(getSupportFragmentManager().getBackStackEntryCount() == 0){
+                super.onBackPressed();
+            }else{
+                getSupportFragmentManager().popBackStack();
+            }
+        }
     }
 }
