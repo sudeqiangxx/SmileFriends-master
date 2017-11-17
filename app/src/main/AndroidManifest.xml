@@ -66,7 +66,10 @@
         android:supportsRtl="true"
         android:name=".manager.AppApi"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".ui.activity.AppStart"
             android:theme="@style/Theme.AppStartLoad">
