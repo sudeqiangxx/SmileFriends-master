@@ -75,10 +75,11 @@ public class VideoHolder extends BaseViewHolder {
                     @Override
                     public void onPrepared(String url, Object... objects) {
                         super.onPrepared(url, objects);
-                        if (!gsyVideoPlayer.isIfCurrentIsFullscreen()) {
-                            //静音
-                            GSYVideoManager.instance().setNeedMute(true);
-                        }
+//                        if (!gsyVideoPlayer.isIfCurrentIsFullscreen()) {
+//                            //静音
+//                            GSYVideoManager.instance().setNeedMute(true);
+//                        }
+                        GSYVideoManager.instance().setNeedMute(false);
 
                     }
 
@@ -86,7 +87,7 @@ public class VideoHolder extends BaseViewHolder {
                     public void onQuitFullscreen(String url, Object... objects) {
                         super.onQuitFullscreen(url, objects);
                         //全屏不静音
-                        GSYVideoManager.instance().setNeedMute(true);
+                        GSYVideoManager.instance().setNeedMute(false);
                     }
 
                     @Override

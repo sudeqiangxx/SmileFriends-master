@@ -109,6 +109,12 @@ public class ConsultFragment extends BaseTwoFragment implements AppConstans {
     public static final String AR_KEY = "arvideo";
     public static final int AR_VALUE = 1;
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        OkGo.getInstance().cancelTag("photo");
+    }
+
     private void getPhoto(int page, final boolean isRefresh, final boolean isMore){
         String url= WrapUrl.wrapG(AppConfig.GRILD_URL);
         String pages= page+"";
@@ -117,6 +123,7 @@ public class ConsultFragment extends BaseTwoFragment implements AppConstans {
         sb.append(pages);
 
         OkGo.get(sb.toString())
+                .tag("photo")
                 .execute(new JsonCallback<PhotoJson>() {
                     @Override
                     public void onSuccess(PhotoJson photoJson, Call call, Response response) {
@@ -129,10 +136,14 @@ public class ConsultFragment extends BaseTwoFragment implements AppConstans {
                                     if (mPhotoData==null){
                                         mPhotoData=new ArrayList<PhotoJson.Data>();
                                     }
-                                    mPhotoData.addAll(mPhotoData.size(),datas);
+                                    if (rlvPhoto!=null){
+                                        mPhotoData.addAll(mPhotoData.size(),datas);
+                                    }
 
                                 }else {
-                                    initRlv(datas);
+                                    if (rlvPhoto!=null){
+                                        initRlv(datas);
+                                    }
                                 }
                             }
 
@@ -144,8 +155,10 @@ public class ConsultFragment extends BaseTwoFragment implements AppConstans {
                     @Override
                     public void onAfter(PhotoJson photoJson, Exception e) {
                         super.onAfter(photoJson, e);
-                        srlPhoto.finishLoadmore();
-                        srlPhoto.finishRefresh();
+                        if (srlPhoto!=null){
+                            srlPhoto.finishLoadmore();
+                            srlPhoto.finishRefresh();
+                        }
                     }
 
                     @Override
