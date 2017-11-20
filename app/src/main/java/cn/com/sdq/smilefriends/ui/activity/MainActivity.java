@@ -248,12 +248,6 @@ public class MainActivity extends ActionBarActivity implements ViewAnimator.View
 
                 break;
         }
-//        if (drawerToggle.ookio-1.12.0.jarnOptionsItemSelected(item)) {
-//            return true;
-//        } else {
-//
-//            return super.onOptionsItemSelected(item);
-//        }
         return true;
     }
 
