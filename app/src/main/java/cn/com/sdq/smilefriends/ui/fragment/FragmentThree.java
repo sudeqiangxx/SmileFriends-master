@@ -102,6 +102,13 @@ public class FragmentThree extends BaseTwoFragment {
         initData();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        OkGo.getInstance().cancelTag("video");
+
+    }
+
     private void initRlv(List<Item> items){
         mItems=items;
         if (mItems==null){
@@ -158,6 +165,7 @@ public class FragmentThree extends BaseTwoFragment {
             url=nextPageUrl;
         }
         OkGo.get(url)
+                .tag("video")
                 .execute(new JsonCallback<Feature>() {
                     @Override
                     public void onSuccess(Feature feature, Call call, Response response) {
@@ -172,9 +180,13 @@ public class FragmentThree extends BaseTwoFragment {
                                         if (mItems==null){
                                             mItems=new ArrayList<Item>();
                                         }
-                                        mItems.addAll(mItems.size(),items);
+                                        if (rlvVideo!=null){
+                                            mItems.addAll(mItems.size(),items);
+                                        }
                                     }else {
-                                        initRlv(items);
+                                        if (rlvVideo!=null){
+                                            initRlv(items);
+                                        }
                                     }
                                 }
                             }
@@ -185,7 +197,9 @@ public class FragmentThree extends BaseTwoFragment {
                     @Override
                     public void onAfter(Feature feature, Exception e) {
                         super.onAfter(feature, e);
-                        srlVideo.finishLoadmore();
+                        if (srlVideo!=null){
+                            srlVideo.finishLoadmore();
+                        }
                     }
                 });
     }
